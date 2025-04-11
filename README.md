@@ -1,6 +1,6 @@
 # GRUPO_XX_TP1
 
 Integrantes: 
-- Battistella Tomas
+- Battistella Tomás
 - Leiva Emanuel
 - Hiriart Irineo
