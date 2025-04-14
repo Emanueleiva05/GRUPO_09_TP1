@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.Projecto" parent="android:Theme.Material.Light.NoActionBar" />
-</resources>
+    <style name="Theme.Projecto" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- otros atributos -->
+    </style></resources>
