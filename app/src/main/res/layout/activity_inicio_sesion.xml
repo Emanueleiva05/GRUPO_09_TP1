@@ -4,7 +4,69 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
+    android:background="@color/black"
     android:layout_height="match_parent"
     tools:context=".app.InicioSesionActivity">
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnlog"
+        android:layout_width="400dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="110dp"
+
+        android:background="@color/design_default_color_error"
+        android:text="Iniciar sesion"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/textOlvidaste"
+        android:layout_width="250dp"
+        android:layout_height="25dp"
+        android:layout_marginBottom="40dp"
+        android:text="Olvidaste la contrasena?"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@id/btnlog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etPassword"
+        android:layout_width="450dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/cardview_dark_background"
+        android:text="Password"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/textOlvidaste"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etEmail"
+        android:layout_width="450dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="40dp"
+        android:background="@color/cardview_dark_background"
+        android:text="Email"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/etPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <View
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:layout_marginBottom="50dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/etEmail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

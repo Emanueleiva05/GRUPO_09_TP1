@@ -1,5 +1,5 @@
-//Diseño y logica para que nuevo usuario cree una cuenta.
-
+package com.example.projecto.ui.screens//Diseño y logica para que nuevo usuario cree una cuenta.
+/*
 package com.example.proyecto.ui.screens
 
 import androidx.compose.foundation.layout.*
@@ -87,3 +87,4 @@ fun RegisterScreen(navController: NavController) {
 fun RegisterScreenPreview(){
     RegisterScreen(navController = rememberNavController())
 }
+*/

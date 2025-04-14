@@ -23,8 +23,8 @@ class FirstAppActivity : AppCompatActivity() {
         val btnLogin = findViewById<AppCompatButton>(R.id.btnLogin)
 
         btnLogin.setOnClickListener {
-            val intent = Intent(this, InicioSesionActivity::class.java) //El intent() lo que hace es decir quiero hacer esto con esto otro, en este caso desde esta actividad (this) abrir iniciosesionactivity
-            startActivity(intent) //Se lanza con startactivity
+            val intent = Intent(this, InicioSesionActivity::class.java)
+            startActivity(intent)
         }
     }
 }
