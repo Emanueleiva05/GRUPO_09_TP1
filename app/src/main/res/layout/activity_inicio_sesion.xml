@@ -49,12 +49,12 @@
         app:layout_constraintStart_toStartOf="parent"/>
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/etEmail"
+        android:id="@+id/etUser"
         android:layout_width="450dp"
         android:layout_height="70dp"
         android:layout_marginBottom="40dp"
         android:background="@color/cardview_dark_background"
-        android:text="Email"
+        android:text="User"
         android:textAlignment="center"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@id/etPassword"
@@ -66,7 +66,7 @@
         android:layout_height="350dp"
         android:layout_marginBottom="50dp"
         android:background="@color/white"
-        app:layout_constraintBottom_toTopOf="@id/etEmail"
+        app:layout_constraintBottom_toTopOf="@id/etUser"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
