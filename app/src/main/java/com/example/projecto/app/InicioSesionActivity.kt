@@ -10,6 +10,7 @@ import com.example.projecto.R
 import android.content.Intent
 import androidx.appcompat.widget.AppCompatEditText
 import android.widget.Toast
+import com.example.projecto.app.data.UserData
 
 class InicioSesionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,11 +27,7 @@ class InicioSesionActivity : AppCompatActivity() {
         val name = findViewById<AppCompatEditText>(R.id.etUser)
         val pass = findViewById<AppCompatEditText>(R.id.etPassword)
 
-        val users: List<List<String>> = listOf(
-            listOf("Juan torres"," " ,"123456"),
-            listOf("Emanuel Leiva"," " ,"123"),
-            listOf("Tomas battistella"," " , "2345")
-        )
+        val users = UserData.users
 
         btnlog.setOnClickListener {
             val nameText = name.text.toString()
@@ -38,7 +35,8 @@ class InicioSesionActivity : AppCompatActivity() {
             var encontrado: Boolean = false
 
             for (user in users){
-                if(user[0] == nameText && user[2]==passText){
+                if(user.usuario == nameText && user.password==passText){
+                    encontrado = true
                     val intent = Intent(this, HomeActivity::class.java)
                     startActivity(intent)
                     break
