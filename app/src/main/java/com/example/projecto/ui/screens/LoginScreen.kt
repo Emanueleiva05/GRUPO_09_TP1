@@ -28,6 +28,7 @@ import com.example.projecto.ui.theme.Primario
 import com.example.projecto.ui.theme.Texto
 import com.example.projecto.ui.theme.TextoSecundario
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
@@ -39,6 +40,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.painterResource
+import com.example.projecto.R
 import com.example.projecto.ui.theme.Primario
 import com.example.projecto.ui.theme.Texto
 import com.example.projecto.ui.theme.TextoSecundario
@@ -51,46 +54,51 @@ fun LoginScreen(navController: NavController) {
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
-    Box(modifier = Modifier.fillMaxSize()) {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(
-                    Brush.verticalGradient(
-                        colors=listOf(
-                            Fondo,
-                            Fondo,
-                            Primario
-                        ),
-                        startY=0.5f * LocalDensity.current.density,
-                        endY= LocalDensity.current.density * 1000f
-                    )
-                )
+    Box(modifier = Modifier
+        .fillMaxSize()
+        .background(
+            Brush.verticalGradient(
+                colors=listOf(
+                    Fondo,
+                    Fondo,
+                    Primario
+                ),
+                startY=0.5f * LocalDensity.current.density,
+                endY= LocalDensity.current.density * 1000f
+            )
         )
+        .padding(24.dp))
+    {
         Column(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(24.dp),
-            verticalArrangement = Arrangement.SpaceEvenly
-        ) {
+                .fillMaxSize(),
+            verticalArrangement = Arrangement.SpaceEvenly)
+        {
             Text(
                 color = Primario,
-                text = "Iniciar Sesion",
+                text = "Inicio de sesion",
                 style = MaterialTheme.typography.headlineSmall,
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally)
-                    .padding(bottom = 24.dp)
             )
+
+            Spacer(modifier = Modifier.height(10.dp))
+
+            Image(painter = painterResource(id = R.drawable.credenciales_de_inicio_de_sesion),
+                contentDescription = "Imagen de inicio de sesion",
+                modifier = Modifier.align(Alignment.CenterHorizontally))
+
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .fillMaxHeight(0.7f)
+                    .fillMaxHeight(0.6f)
                     .padding(8.dp)
                     .shadow(elevation = 16.dp, shape = RoundedCornerShape(16.dp))
-                    .background(Fondo, shape = RoundedCornerShape(16.dp))
-            ) {
+                    .background(Fondo, shape = RoundedCornerShape(16.dp)))
+            {
                 Column {
-                    Spacer(modifier = Modifier.fillMaxHeight(0.3f))
+
+                    Spacer(modifier = Modifier.height(40.dp))
 
                     OutlinedTextField(
                         value = username,
@@ -99,11 +107,9 @@ fun LoginScreen(navController: NavController) {
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(horizontal = 8.dp),
-                        shape = MaterialTheme.shapes.small
-                    )
+                        shape = MaterialTheme.shapes.small)
 
-
-                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(30.dp))
 
                     OutlinedTextField(
                         value = password,
@@ -114,56 +120,63 @@ fun LoginScreen(navController: NavController) {
                             .padding(horizontal = 8.dp),
                         shape = MaterialTheme.shapes.small
                     )
-                }
-            }
-            Spacer(modifier = Modifier.height(24.dp))
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                Button(
-                    onClick = {
-                        navController.navigate("register") {
-                            popUpTo("login") { inclusive = true }
+
+                    Spacer(modifier = Modifier.height(70.dp))
+
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp))
+                    {
+                        Button(
+                            onClick = {
+                                navController.navigate("register") {
+                                    popUpTo("login") { inclusive = true }
+                                }
+                            },
+                            modifier = Modifier
+                                .height(50.dp)
+                                .weight(1f)
+                                .padding(start = 8.dp),
+                            border = BorderStroke(1.dp, Primario),
+                            shape = MaterialTheme.shapes.medium,
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = Fondo,
+                            ),
+                            contentPadding = PaddingValues(),
+                            elevation = ButtonDefaults.buttonElevation(defaultElevation = 16.dp))
+                        {
+                            Text("Registrarme", color = Texto)
                         }
-                    },
-                    modifier = Modifier
-                        .height(50.dp)
-                        .weight(1f),
-                    shape = RoundedCornerShape(12.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = Fondo,
-                    ),
-                    elevation = ButtonDefaults.buttonElevation(defaultElevation = 16.dp)
-                ) {
-                    Text("Registrarme", color = Texto)
-                }
-                Button(
-                    onClick = {
+                        Button(
+                            onClick = {
+                                if (username == "juan_torres" && password == "12345") {
+                                    navController.navigate("home") // Cambiar "home" por la tencera pantalla
+                                } else {
+                                    Toast.makeText(context, "Credenciales incorrectas", Toast.LENGTH_SHORT).show()
+                                }
+                            },
+                            modifier = Modifier
+                                .height(50.dp)
+                                .weight(1f)
+                                .padding(end = 8.dp),
+                            shape = MaterialTheme.shapes.medium,
+                            border = BorderStroke(1.dp, Primario),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = Fondo,
+                            ),
+                            contentPadding = PaddingValues(),
+                            elevation = ButtonDefaults.buttonElevation(defaultElevation = 16.dp))
+                        {
+                            Text("Iniciar Sesion", color = Texto)
 
-
-                    },
-                    modifier = Modifier
-                        .height(50.dp)
-                        .weight(1f),
-                    shape = MaterialTheme.shapes.medium,
-                    //border = BorderStroke(2.dp, Primario),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = Fondo,
-                    ),
-                    contentPadding = PaddingValues(),
-                    elevation = ButtonDefaults.buttonElevation(defaultElevation = 16.dp)
-                ) {
-                    Text("Iniciar Sesion", color = Texto)
-
-                }
-            }
-
+                        }
                     }
-
+                }
             }
         }
+    }
+}
 
 
 @Preview(showBackground = true, showSystemUi = false)
