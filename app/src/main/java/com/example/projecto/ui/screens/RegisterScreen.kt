@@ -3,6 +3,7 @@ package com.example.projecto.ui.screens
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.text.Layout
+import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -21,13 +22,19 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.projecto.R
+import com.example.projecto.data.User
+import com.example.projecto.data.UserViewModel
 import com.example.projecto.ui.theme.Primario
 import com.example.projecto.ui.theme.Texto
 import com.example.projecto.ui.theme.TextoSecundario
@@ -43,7 +50,7 @@ import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun RegisterScreen(navController: NavController) {
+fun RegisterScreen(navController: NavController, userViewModel: UserViewModel) {
     var nombre by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -130,7 +137,9 @@ fun RegisterScreen(navController: NavController) {
                             .fillMaxWidth()
                             .padding(horizontal = 8.dp),
                         shape = MaterialTheme.shapes.small,
-                        textStyle = TextStyle(Primario)
+                        textStyle = TextStyle(Primario),
+                        visualTransformation = PasswordVisualTransformation(),  // Esto oculta el texto
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)  // Teclado adecuado
                     )
 
                     Spacer(modifier = Modifier.height(16.dp))
@@ -143,7 +152,9 @@ fun RegisterScreen(navController: NavController) {
                             .fillMaxWidth()
                             .padding(horizontal = 8.dp),
                         shape = MaterialTheme.shapes.small,
-                        textStyle = TextStyle(Primario)
+                        textStyle = TextStyle(Primario),
+                        visualTransformation = PasswordVisualTransformation(),  // Esto oculta el texto
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)  // Teclado adecuado
                     )
                     Spacer(modifier = Modifier.height(130.dp))
 
@@ -281,26 +292,31 @@ fun RegisterScreen(navController: NavController) {
                         )
                     },
                     confirmButton = {
-                        Button(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(horizontal = 50.dp),
-                            colors = ButtonDefaults.buttonColors(
-                                containerColor = Fondo,
-                            ),
-                            border = BorderStroke(1.dp, Primario),
-                            onClick = {
-                                nombre = ""
-                                email = ""
-                                password = ""
-                                passwordTwo = ""
-                                showConfirmDialog = false
-                                navController.navigate("login") {
-                                    popUpTo("register") { inclusive = true }
+                        Box {
+                            Button(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(horizontal = 50.dp),
+                                colors = ButtonDefaults.buttonColors(
+                                    containerColor = Fondo,
+                                ),
+                                border = BorderStroke(1.dp, Primario),
+                                onClick = {
+                                    var user = User(nombre,email,password)
+                                    userViewModel.user = user
+
+                                    nombre = ""
+                                    email = ""
+                                    password = ""
+                                    passwordTwo = ""
+                                    showConfirmDialog = false
+                                    navController.navigate("login") {
+                                        popUpTo("register") { inclusive = true }
+                                    }
                                 }
+                            ) {
+                                Text("Aceptar", color = Primario)
                             }
-                        ) {
-                            Text("Aceptar", color = Primario)
                         }
                     },
                     containerColor = Fondo,
@@ -316,5 +332,8 @@ fun RegisterScreen(navController: NavController) {
 @Preview(showBackground = true, showSystemUi = false)
 @Composable
 fun RegisterScreenPreview(){
-    RegisterScreen(navController = rememberNavController())
+    RegisterScreen(
+        navController = rememberNavController(),
+        userViewModel = TODO()
+    )
 }

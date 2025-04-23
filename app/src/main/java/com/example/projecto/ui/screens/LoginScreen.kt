@@ -1,6 +1,7 @@
 //Login - Diseño y logica para que el usuario ingrese sus crendenciales.
 package com.example.projecto.ui.screens
 
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -22,7 +23,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.platform.LocalDensity
-import com.example.projecto.app.data.UserData
 import com.example.projecto.ui.theme.Fondo
 import com.example.projecto.ui.theme.Primario
 import com.example.projecto.ui.theme.Texto
@@ -31,6 +31,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.unit.dp
@@ -41,7 +42,10 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.projecto.R
+import com.example.projecto.data.UserViewModel
 import com.example.projecto.ui.theme.Primario
 import com.example.projecto.ui.theme.Texto
 import com.example.projecto.ui.theme.TextoSecundario
@@ -49,8 +53,9 @@ import com.example.projecto.ui.theme.Fondo
 import com.example.projecto.ui.theme.Secundario
 
 @Composable
-fun LoginScreen(navController: NavController) {
+fun LoginScreen(navController: NavController, userViewModel: UserViewModel) {
     val context = LocalContext.current
+    val user = userViewModel.user
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
@@ -107,7 +112,10 @@ fun LoginScreen(navController: NavController) {
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(horizontal = 8.dp),
-                        shape = MaterialTheme.shapes.small)
+                        shape = MaterialTheme.shapes.small,
+                        singleLine = true,
+                        textStyle = TextStyle(color = Color.White))
+
 
                     Spacer(modifier = Modifier.height(30.dp))
 
@@ -118,8 +126,10 @@ fun LoginScreen(navController: NavController) {
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(horizontal = 8.dp),
-                        shape = MaterialTheme.shapes.small
-                    )
+                        shape = MaterialTheme.shapes.small,
+                        textStyle = TextStyle(color = Color.White),
+                        visualTransformation = PasswordVisualTransformation(),  // Esto oculta el texto
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password))  // Teclado adecuado)
 
                     Spacer(modifier = Modifier.height(70.dp))
 
@@ -150,7 +160,7 @@ fun LoginScreen(navController: NavController) {
                         }
                         Button(
                             onClick = {
-                                if (username == "juan_torres" && password == "12345") {
+                                if (username == user?.nombre && password == user.password) {
                                     navController.navigate("home") // Cambiar "home" por la tencera pantalla
                                 } else {
                                     Toast.makeText(context, "Credenciales incorrectas", Toast.LENGTH_SHORT).show()
@@ -182,5 +192,8 @@ fun LoginScreen(navController: NavController) {
 @Preview(showBackground = true, showSystemUi = false)
 @Composable
 fun LoginScreenPreview(){
-    LoginScreen(navController = rememberNavController())
+    LoginScreen(
+        navController = rememberNavController(),
+        userViewModel = TODO()
+    )
 }
