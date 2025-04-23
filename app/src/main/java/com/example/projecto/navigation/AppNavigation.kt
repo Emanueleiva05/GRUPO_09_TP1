@@ -10,6 +10,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.projecto.ui.screens.RegisterScreen
 import com.example.projecto.ui.screens.LoginScreen
+import com.example.projecto.ui.screens.HomeScreen
 
 @Composable
 fun Navigation() {
@@ -20,6 +21,9 @@ fun Navigation() {
         }
         composable("login") {
             LoginScreen(navController = navController)
+        }
+        composable("home") {
+            HomeScreen(navController = navController)
         }
     }
 }
