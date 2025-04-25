@@ -36,6 +36,7 @@ fun Navigation() {
         composable("home") {
             HomeScreen(
                 navController = navController,
+                userViewModel = userViewModel
             )
         }
     }
