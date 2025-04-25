@@ -45,6 +45,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.projecto.R
+import com.example.projecto.data.User
 import com.example.projecto.data.UserViewModel
 import com.example.projecto.ui.theme.Primario
 import com.example.projecto.ui.theme.Texto
@@ -81,29 +82,25 @@ fun LoginScreen(navController: NavController, userViewModel: UserViewModel) {
         {
             Text(
                 color = Primario,
-                text = "Inicio de sesion",
+                text = "Bienvenido a nuestra app",
                 style = MaterialTheme.typography.headlineSmall,
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally)
             )
 
-            Spacer(modifier = Modifier.height(10.dp))
-
-            Image(painter = painterResource(id = R.drawable.credenciales_de_inicio_de_sesion),
+            Image(painter = painterResource(id = R.drawable.baseline_login_24),
                 contentDescription = "Imagen de inicio de sesion",
                 modifier = Modifier.align(Alignment.CenterHorizontally))
 
             Box(
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .fillMaxWidth(1f)
                     .fillMaxHeight(0.6f)
-                    .padding(8.dp)
-                    .shadow(elevation = 16.dp, shape = RoundedCornerShape(16.dp))
-                    .background(Fondo, shape = RoundedCornerShape(16.dp)))
+                    .padding(8.dp))
             {
                 Column {
 
-                    Spacer(modifier = Modifier.height(40.dp))
+                    Spacer(modifier = Modifier.height(20.dp))
 
                     OutlinedTextField(
                         value = username,
@@ -192,8 +189,13 @@ fun LoginScreen(navController: NavController, userViewModel: UserViewModel) {
 @Preview(showBackground = true, showSystemUi = false)
 @Composable
 fun LoginScreenPreview(){
+    val fakeUserViewModel = object : UserViewModel() {
+        init {
+            user = User(nombre = "Juan", password = "123456" , email = "juan@ejemplo.com") // ejemplo
+        }
+    }
     LoginScreen(
         navController = rememberNavController(),
-        userViewModel = TODO()
+        userViewModel = fakeUserViewModel
     )
 }

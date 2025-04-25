@@ -332,8 +332,13 @@ fun RegisterScreen(navController: NavController, userViewModel: UserViewModel) {
 @Preview(showBackground = true, showSystemUi = false)
 @Composable
 fun RegisterScreenPreview(){
+    val fakeUserViewModel = object : UserViewModel() {
+        init {
+            user = User(nombre = "Juan", password = "123456" , email = "juan@ejemplo.com") // ejemplo
+        }
+    }
     RegisterScreen(
         navController = rememberNavController(),
-        userViewModel = TODO()
+        userViewModel = fakeUserViewModel
     )
 }
