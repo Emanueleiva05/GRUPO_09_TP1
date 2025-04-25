@@ -42,6 +42,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.projecto.R
+import com.example.projecto.data.User
 import com.example.projecto.ui.theme.Fondo
 import com.example.projecto.ui.theme.Primario
 import com.example.projecto.data.UserViewModel
@@ -301,8 +302,18 @@ fun SubmitBtn(
     }
 }
 
+
+
 @Preview(showBackground = true, showSystemUi = false)
 @Composable
 fun HomeScreenPreview() {
-    HomeScreen(navController = rememberNavController(), userViewModel = TODO())
+    val fakeUserViewModel = object : UserViewModel() {
+        init {
+            user = User(nombre = "Juan", password = "123456" , email = "juan@ejemplo.com") // ejemplo
+        }
+    }
+    HomeScreen(
+        navController = rememberNavController(),
+        userViewModel = fakeUserViewModel
+    )
 }

@@ -5,6 +5,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 
-class UserViewModel: ViewModel() {
+open class UserViewModel: ViewModel() {
     var user by mutableStateOf<User?>(null)
 }
