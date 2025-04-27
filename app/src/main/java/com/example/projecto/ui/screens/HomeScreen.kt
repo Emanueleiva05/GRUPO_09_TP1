@@ -2,6 +2,7 @@
 
 package com.example.projecto.ui.screens
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -46,6 +47,11 @@ import com.example.projecto.data.User
 import com.example.projecto.ui.theme.Fondo
 import com.example.projecto.ui.theme.Primario
 import com.example.projecto.data.UserViewModel
+import com.example.projecto.ui.theme.Primario
+import com.example.projecto.ui.theme.Texto
+import com.example.projecto.ui.theme.TextoSecundario
+import com.example.projecto.ui.theme.Fondo
+import com.example.projecto.ui.theme.Secundario
 
 
 
@@ -59,14 +65,14 @@ fun HomeScreen(navController: NavController, userViewModel: UserViewModel) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color.Black)
+                .background(Fondo)
                 .padding(top = 100.dp, start = 24.dp, end = 24.dp)
         ) {
             Column(modifier = Modifier.fillMaxWidth()) {
-                Spacer(Modifier.height(20.dp))
+                Spacer(Modifier.height(50.dp))
                 Text(
                     text = "Seleccione una plataforma",
-                    color = Color.White,
+                    color = Texto,
                     style = TextStyle(fontSize = 20.sp),
                     modifier = Modifier.padding(vertical = 10.dp)
                 )
@@ -77,7 +83,7 @@ fun HomeScreen(navController: NavController, userViewModel: UserViewModel) {
                 Spacer(Modifier.height(30.dp))
                 Text(
                     text = "Seleccione sus preferencias",
-                    color = Color.White,
+                    color = Texto,
                     style = TextStyle(fontSize = 20.sp),
                     modifier = Modifier.padding(vertical = 10.dp)
                 )
@@ -105,19 +111,18 @@ fun WelcomeMessage(userViewModel: UserViewModel) {
         modifier = Modifier
             .fillMaxWidth()
             .height(100.dp)
-            .clip(RoundedCornerShape(bottomStart = 32.dp, bottomEnd = 32.dp))
             .background(
-                Brush.horizontalGradient(
-                    colors = listOf(Primario, Fondo, Fondo),
-                    startX = 0f,
-                    endX = LocalDensity.current.density * 1000f
+                Brush.verticalGradient(
+                    colors = listOf(Primario, Fondo),
+                    startY = 0f,
+                    endY = LocalDensity.current.density * 100f
                 )
             )
             .padding(24.dp)
     ) {
         Text(
             text = "Bienvenido ${user?.nombre}",
-            color = Color.Black,
+            color = Texto,
             style = TextStyle(fontSize = 30.sp),
             modifier = Modifier.align(Alignment.Center)
         )
@@ -181,7 +186,7 @@ fun PlatformItem(
             modifier = Modifier.size(80.dp)
         )
         Spacer(modifier = Modifier.height(8.dp))
-        Text(text = text, color = Color.White)
+        Text(text = text, color = Texto)
     }
 }
 
@@ -217,7 +222,7 @@ fun PereferenceSelector(
             Text(
                 text = pref,
                 modifier = Modifier.padding(8.dp),
-                color = Color.White,
+                color = Texto,
             )
         }
     }
@@ -238,7 +243,7 @@ fun PereferenceSelector(
             Text(
                 text = "Otra",
                 modifier = Modifier.padding(8.dp),
-                color = Color.White,
+                color = Texto,
             )
         }
         Row {
@@ -252,13 +257,13 @@ fun PereferenceSelector(
                         .padding(8.dp)
                         .height(56.dp),
                     colors = TextFieldDefaults.colors(
-                        focusedTextColor = Color.White,
-                        unfocusedTextColor = Color.White,
-                        cursorColor = Color.White,
+                        focusedTextColor = Texto,
+                        unfocusedTextColor = Texto,
+                        cursorColor = Texto,
                         focusedContainerColor = Color.Transparent,
                         unfocusedContainerColor = Color.Transparent,
-                        focusedIndicatorColor = Color.White,
-                        unfocusedIndicatorColor = Color.White
+                        focusedIndicatorColor = Texto,
+                        unfocusedIndicatorColor =Texto
                     )
 
                 )
@@ -292,9 +297,10 @@ fun SubmitBtn(
             modifier = Modifier
                 .padding(top = 16.dp),
             colors = ButtonDefaults.buttonColors(
-                containerColor = Color.White,
-                contentColor = Color.Black
-            )
+                containerColor = Texto,
+                contentColor = Primario
+            ),
+            border = BorderStroke(1.dp, Primario),
         ) {
             Text(text = "Enviar")
         }

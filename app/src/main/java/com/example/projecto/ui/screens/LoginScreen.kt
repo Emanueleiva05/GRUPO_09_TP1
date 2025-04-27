@@ -111,7 +111,7 @@ fun LoginScreen(navController: NavController, userViewModel: UserViewModel) {
                             .padding(horizontal = 8.dp),
                         shape = MaterialTheme.shapes.small,
                         singleLine = true,
-                        textStyle = TextStyle(color = Color.White))
+                        textStyle = TextStyle(color = Secundario))
 
 
                     Spacer(modifier = Modifier.height(30.dp))
@@ -124,7 +124,7 @@ fun LoginScreen(navController: NavController, userViewModel: UserViewModel) {
                             .fillMaxWidth()
                             .padding(horizontal = 8.dp),
                         shape = MaterialTheme.shapes.small,
-                        textStyle = TextStyle(color = Color.White),
+                        textStyle = TextStyle(color = Secundario),
                         visualTransformation = PasswordVisualTransformation(),  // Esto oculta el texto
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password))  // Teclado adecuado)
 

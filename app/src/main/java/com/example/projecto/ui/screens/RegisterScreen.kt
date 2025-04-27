@@ -226,14 +226,14 @@ fun RegisterScreen(navController: NavController, userViewModel: UserViewModel) {
                         Text(
                             text = "¿Cancelar registro?",
                             style = MaterialTheme.typography.titleMedium,
-                            color = Primario
+                            color = Texto
                         )
                     },
                     text = {
                         Text(
                             text = "Se perderán todos los datos ingresados.",
                             style = MaterialTheme.typography.bodyMedium,
-                            color = TextoSecundario
+                            color = Texto
                         )
                     },
                     confirmButton = {
@@ -253,7 +253,7 @@ fun RegisterScreen(navController: NavController, userViewModel: UserViewModel) {
                                 }
                             }
                         ) {
-                            Text("Aceptar", color = Primario)
+                            Text("Aceptar", color = Texto)
                         }
                     },
                     dismissButton = {
@@ -266,7 +266,7 @@ fun RegisterScreen(navController: NavController, userViewModel: UserViewModel) {
                             },
                             border = BorderStroke(1.dp, Primario)
                         ) {
-                            Text("Volver", color = Primario)
+                            Text("Volver", color = Texto)
                         }
                     },
                     containerColor = Fondo,
@@ -288,7 +288,7 @@ fun RegisterScreen(navController: NavController, userViewModel: UserViewModel) {
                         Text(
                             text = "Sus datos se han registrado exitosamente.",
                             style = MaterialTheme.typography.bodyMedium,
-                            color = TextoSecundario
+                            color = Texto
                         )
                     },
                     confirmButton = {
@@ -315,7 +315,7 @@ fun RegisterScreen(navController: NavController, userViewModel: UserViewModel) {
                                     }
                                 }
                             ) {
-                                Text("Aceptar", color = Primario)
+                                Text("Aceptar", color = Texto)
                             }
                         }
                     },
@@ -325,7 +325,6 @@ fun RegisterScreen(navController: NavController, userViewModel: UserViewModel) {
             }
         }
     }
-
 }
 
 
