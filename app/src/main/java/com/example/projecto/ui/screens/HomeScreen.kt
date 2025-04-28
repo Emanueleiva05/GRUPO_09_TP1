@@ -257,13 +257,13 @@ fun PereferenceSelector(
                         .padding(8.dp)
                         .height(56.dp),
                     colors = TextFieldDefaults.colors(
-                        focusedTextColor = Texto,
-                        unfocusedTextColor = Texto,
-                        cursorColor = Texto,
+                        focusedTextColor = Secundario,
+                        unfocusedTextColor = Secundario,
+                        cursorColor = Secundario,
                         focusedContainerColor = Color.Transparent,
                         unfocusedContainerColor = Color.Transparent,
-                        focusedIndicatorColor = Texto,
-                        unfocusedIndicatorColor =Texto
+                        focusedIndicatorColor = Secundario,
+                        unfocusedIndicatorColor =Secundario
                     )
 
                 )
